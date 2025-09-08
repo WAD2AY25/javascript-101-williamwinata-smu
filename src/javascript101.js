@@ -10,7 +10,7 @@ function ex1() {
     person.firstName = "Jun";
     cars[0] = "what";
     
-    return "" // e.g., "YournalSaab"
+    return newperson.firstName + newcars[0]; // e.g., "YournalSaab"
 
 }
 
@@ -33,7 +33,7 @@ function ex2() {
 
     */
 
-    return "" // e.g., the result of the first two expressions is "534NaN"
+    return (5 + "34") + ("Bob" - "bill") + (5 - "4") + (5 % 10) + (true + true) + (false - true) + (5 >= 1) + ("A" > "B") + ("a" > "A") + (true != true) // e.g., the result of the first two expressions is "534NaN"
 
 }
 
@@ -45,6 +45,10 @@ function ex3(firstNumber, secondNumber) {
             - else return the string "NaN"
 
     */
+    if (typeof firstNumber != "number" || typeof secondNumber != "number"){
+        return "NaN";
+    }
+    return(firstNumber + secondNumber)
       
 }
 
@@ -69,7 +73,17 @@ function ex4(persons) {
         (in this example, the function return 44)
     */
 
-    return ""
+    var youngest_age = Number.MAX_SAFE_INTEGER;
+    for(var i = 0; i < persons.length; i++){
+        var person = persons[i]
+        if (person.name == "The Chosen One"){
+            if (person.age < youngest_age){
+                youngest_age = person.age;
+            }
+            
+        }
+    }
+    return youngest_age;
    
 }
 
@@ -84,7 +98,12 @@ function ex5(str) {
 
     */
 
-    return ""
+    var dummy_str = str.toLowerCase().replaceAll(" ", "");
+    var reversed = dummy_str.split("").reverse().join("");
+    if (reversed == dummy_str){
+        return true;
+    }
+    return false;
 
 }
 
@@ -107,9 +126,11 @@ function computeAverageScore(students) {
 
     */
     let result = 0
-   
+    students.forEach((student) => {
+        result += student.score;
+    });
 
-    return result
+    return result/students.length;
 }
 
 function checkStatus(student) {
@@ -123,7 +144,10 @@ function checkStatus(student) {
           
         (in this example, the function return 'Pass')
 */
-   
+   if (student.score >= 50){
+    return "Pass";
+   }
+   return "Fail";
 }
 
 module.exports = { ex1, ex2, ex3, ex4, ex5, computeAverageScore, checkStatus }
